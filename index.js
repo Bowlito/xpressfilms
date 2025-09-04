@@ -4,7 +4,7 @@ import films from "./routes/film.route.js"
 
 const app = express();
 
-app.use(express.static('public'))
+app.use(express.static("public"))
 
 app.set('view engine', 'ejs')
 app.set('views', import.meta.dirname + '/templates')

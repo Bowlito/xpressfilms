@@ -33,7 +33,7 @@ CREATE TABLE favoris (
 INSERT INTO films VALUES (
     NULL,
     "Spiderman and the spider-verse",
-    NULL,
+    "images/spiderverse1.jpg",
     "A man with spider abilities in multiple univers",
     "2018-09-24",
     "action"
