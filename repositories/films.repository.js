@@ -12,6 +12,8 @@ const findAll = async () => {
     }
 }
 
+console.log(findAll());
+
 
 export default { findAll }
 
