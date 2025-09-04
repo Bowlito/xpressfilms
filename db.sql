@@ -30,3 +30,11 @@ CREATE TABLE favoris (
     FOREIGN KEY (id_film) REFERENCES film(id_film)
 )
 
+INSERT INTO films VALUES (
+    NULL,
+    "Spiderman and the spider-verse",
+    NULL,
+    "A man with spider abilities in multiple univers",
+    "2018-09-24",
+    "action"
+)
