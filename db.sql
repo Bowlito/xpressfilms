@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS xpress_films
+
+CREATE DATABASE xpress_films
+
+USE xpress_films
+
+CREATE TABLE films (
+    id_film INT PRIMARY KEY AUTO_INCREMENT,
+    titre VARCHAR(50) NOT NULL,
+    image VARCHAR(200),
+    description VARCHAR(200),
+    dateSortie DATE,
+    genre VARCHAR(30)
+)
+
+CREATE TABLE utilisateurs (
+    id_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    role VARCHAR(15) NOT NULL
+)
+
+CREATE TABLE favoris (
+    id_utilisateur INT NOT NULL,
+    id_film INT NOT NULL,
+    PRIMARY KEY (id_utilisateur, id_film),
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur),
+    FOREIGN KEY (id_film) REFERENCES film(id_film)
+)
+
