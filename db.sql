@@ -38,3 +38,21 @@ INSERT INTO films VALUES (
     "2018-09-24",
     "action"
 )
+
+INSERT INTO films VALUES (
+    NULL,
+    "Inception",
+    "images/inception1.jpg",
+    "What if you could interact with others dreams in order to influence them?",
+    "2019-08-24",
+    "science-fiction"
+)
+
+INSERT INTO films VALUES (
+    NULL,
+    "Destins entre-lacets",
+    "images/destinsdnd.png",
+    "Leur destinée fragile ne tient qu/’à un fil… ou peut-être à deux lacets.",
+    "2025-06-15",
+    "Fantaisie"
+)

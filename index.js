@@ -1,14 +1,18 @@
 import express from 'express';
 import 'dotenv/config';
 import films from "./routes/film.route.js"
+import path from 'path'
 
 const app = express();
 
 app.use(express.static("public"))
 
+app.use('/bootstrap', express.static(path.join(import.meta.dirname, 'node_modules/bootstrap/dist')));
+
 app.set('view engine', 'ejs')
 app.set('views', import.meta.dirname + '/templates')
 app.set('view options', { delimiter: '?' })
+
 
 app.use('/films', films)
 

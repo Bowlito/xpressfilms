@@ -5,16 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Films</title>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <h1>Voici les films en stock</h1>
+<body class="bg-black text-light">
+  <h1 class="text-center mb-5">Voici les films en stock</h1>
 
-  <? films.forEach(film => { ?>
-   <img src="<?= film.image ?>" alt=""> 
-  <p> <?= film.titre ?> </p>
-  <? }); ?>
-
+  <div class="d-flex flex-row justify-content-center p-2">
+    <? films.forEach(film => { ?>
+    <div class="card p-2 m-2" style="width: 15rem">
+      <img src="<?= film.image ?>" class="card-img-top" alt="spiderman across the spiderverse">
+      <div class="card-body">
+        <h5 class="card-title"><?= film.titre ?></h5>
+        <p class="card-text"> <?= film.description ?> </p>
+        <a href="#" class="btn btn-primary">Ajouter aux favoris</a>
+      </div>
+    </div>
+    <? }); ?>
+  </div>
 
 </body>
 
