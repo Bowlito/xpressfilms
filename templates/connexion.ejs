@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Page de connexion</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
+     <?- include('header.ejs') ?>
+    <h2 class="text-center mt-5 mb-5">Connexion</h2>
+     <main class="d-flex flex-row justify-content-center p-2">
+    <form style="width: 20rem" method="post">
+      <div class="mb-3 ">
+        <label for="email" class="form-label">Adresse mail</label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="mdp" name="password">
+      </div>
+      <div class="text-center">
+      <button type="submit" class="btn btn-info">Se connecter</button>
+      </div>
+    </form>
+  </main>
 </body>
 </html>

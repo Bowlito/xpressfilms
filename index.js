@@ -5,7 +5,7 @@ import { fr } from 'yup-locales';
 import session from 'express-session';
 import films from "./routes/film.route.js"
 import inscriptions from "./routes/inscription.route.js"
-// import connexions from "./routes/connexion.route.js"
+import connexions from "./routes/connexion.route.js"
 // import favoris from "./routes/favoris.route.js"
 import path from 'path'
 import lastFilm from './repositories/films.repository.js'
@@ -38,16 +38,26 @@ app.set('view options', { delimiter: '?' });
 
 app.use('/films', films);
 app.use('/inscription', inscriptions);
+app.use('/connexion', connexions)
 // app.use('/films', films)
 // app.use('/films', films)
 
+app.get("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error("Erreur lors de la destruction de session :", err);
+            return res.status(500).send("Erreur serveur");
+        }
+        res.clearCookie('connect.sid');
+
+        res.redirect("/accueil");
+    });
+});
 
 
 app.get(['/', '/home', '/accueil'], async (req, res) => {
 
     const movies = await lastFilm.findLast()
-
-    console.log("message : " + movies[0].image);
 
 
     res.render('index', { movies })

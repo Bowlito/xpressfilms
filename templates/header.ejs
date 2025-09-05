@@ -17,9 +17,15 @@
         <span class="navbar-text text-light p-2">
           Bienvenue
         </span>
+        <? if (session && session.prenom){ ?>
+        <span> <?= session.prenom ?> <?= session.nom ?> </span>
+        <a href="/logout" class="btn text-warning"> Se déconnecter</a>
+        <? } else { ?>
         <a href="./connexion" class="m-1 p-2 text-light text-decoration-none btn btn-success">Se connecter</a>
         <a href="./inscription" class="m-1 p-2 text-light text-decoration-none btn btn-info">S'inscrire</a>
-        <p> <?= session.prenom ?> </p>
+        <?} ?>
+
+
       </div>
     </div>
   </nav>

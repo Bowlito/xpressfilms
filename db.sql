@@ -18,7 +18,7 @@ CREATE TABLE utilisateurs (
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     role VARCHAR(15) NOT NULL
 )
 
@@ -55,4 +55,13 @@ INSERT INTO films VALUES (
     "Leur destinée fragile ne tient qu/’à un fil… ou peut-être à deux lacets.",
     "2025-06-15",
     "Fantaisie"
+)
+
+INSERT INTO utilisateurs VALUES (
+    NULL,
+    "Boule",
+    "Monsieur",
+    "monsieur@boule.fr",
+    "$2b$10$TKpmYNyyefNmfXQseyG88OMJSJsDT/C1fVM5aQWXbilhghYk42Fba",
+    "admin"
 )

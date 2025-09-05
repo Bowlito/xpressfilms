@@ -1,5 +1,7 @@
+import { id } from 'yup-locales'
 import yup from '../config/yup.config.js'
 import inscriptionRepository from "../repositories/inscription.repository.js"
+import bcrypt from "bcrypt"
 
 
 const showPage = (req, res) => {
@@ -29,24 +31,42 @@ const addUser = async (req, res, next) => {
     userSchema
         .validate(req.body, { abortEarly: false })
         .then(async () => {
-            req.session.prenom = req.body.prenom
-            const u = await inscriptionRepository.save(req.body)
+
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+
+            const u = await inscriptionRepository.save({
+                id: req.body.id,
+                nom: req.body.nom,
+                prenom: req.body.prenom,
+                email: req.body.email,
+                password: hashedPassword,
+                role: req.body.role
+            });
+
             if (u == null) {
                 res.render('inscription', {
                     erreurs: ["Problème d'insertion"],
                 })
             } else {
-                console.log(u);
-                
+                req.session.id = u.id;
+                req.session.prenom = u.prenom;
+                req.session.nom = u.nom;
+                req.session.role = u.role;
+
+
                 res.redirect('/accueil')
 
             }
         })
         .catch(async err => {
-            console.log(" C'est moi");
-           
+            console.log("JE ME SUIS FAIT CATCH");
+
             res.redirect('/inscription')
         })
+
+    console.log(req.session);
+
 }
 
 
