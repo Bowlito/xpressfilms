@@ -1,28 +1,45 @@
 import express from 'express';
 import 'dotenv/config';
+import { setLocale } from 'yup';
+import { fr } from 'yup-locales';
+import session from 'express-session';
 import films from "./routes/film.route.js"
+import inscriptions from "./routes/inscription.route.js"
 // import connexions from "./routes/connexion.route.js"
 // import favoris from "./routes/favoris.route.js"
-// import inscriptions from "./routes/inscription.route.js"
 import path from 'path'
-
 import lastFilm from './repositories/films.repository.js'
+
 
 const app = express();
 
-app.use(express.static("public"))
+app.use(session({
+    secret: 'XPRESS-VID',
+    resave: false,
+    saveUninitialized: false
+}));
+
+
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    next();
+});
+
+app.use(express.urlencoded());
+app.use(express.static("public"));
+
+setLocale(fr);
 
 app.use('/bootstrap', express.static(path.join(import.meta.dirname, 'node_modules/bootstrap/dist')));
 
-app.set('view engine', 'ejs')
-app.set('views', import.meta.dirname + '/templates')
-app.set('view options', { delimiter: '?' })
+app.set('view engine', 'ejs');
+app.set('views', import.meta.dirname + '/templates');
+app.set('view options', { delimiter: '?' });
 
-
-app.use('/films', films)
-app.use('/films', films)
-app.use('/films', films)
-app.use('/films', films)
+app.use('/films', films);
+app.use('/inscription', inscriptions);
+// app.use('/films', films)
+// app.use('/films', films)
 
 
 
@@ -41,7 +58,6 @@ app.all('/*splat', (req, res) => {
         .status(404)
         .end("Page introuvable")
 })
-
 
 const PORT = process.env.PORT || 5555;
 

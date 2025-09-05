@@ -1,8 +1,9 @@
-//import express from 'express'
-//import inscriptionController from '../controllers/inscription.controller.js'
+import express from 'express'
+import inscriptionController from '../controllers/inscription.controller.js'
 
-//const routeur = express.Router()
+const routeur = express.Router()
 
-//routeur.get('/', inscriptionController.show)
+routeur.get('/', inscriptionController.showPage)
+routeur.post('/', inscriptionController.addUser)
 
-//export default { routeur }
+export default routeur
