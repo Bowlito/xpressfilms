@@ -8,10 +8,24 @@
   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <h1 class="text-primary">Bienvenue sur XPRESS VIDS</h1>
+<body class="bg-black">
 
 
+  <?- include('header.ejs') ?>
+
+
+  <h1 class="text-primary text-center">Bienvenue sur XPRESS VIDS</h1>
+
+  <h2 class="text-light text-center">Dernier film ajouté</h2>
+  <div class="d-flex flex-row justify-content-center p-2">
+    <div class="card p-2 m-2" style="width: 15rem">
+      <img src="<?= movies[0].image ?>" alt="<?= movies[0].titre ?>">
+      <div class="card-body">
+        <h5 class=""> <?= movies[0].titre ?> </h5>
+        <p class="card-text"> <?= movies[0].description ?> </p>
+      </div>
+    </div>
+  </div>
 
 </body>
 

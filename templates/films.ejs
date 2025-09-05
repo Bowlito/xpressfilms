@@ -9,12 +9,13 @@
 </head>
 
 <body class="bg-black text-light">
+  <?- include('header.ejs') ?>
   <h1 class="text-center mb-5">Voici les films en stock</h1>
-
+  
   <div class="d-flex flex-row justify-content-center p-2">
     <? films.forEach(film => { ?>
     <div class="card p-2 m-2" style="width: 15rem">
-      <img src="<?= film.image ?>" class="card-img-top" alt="spiderman across the spiderverse">
+      <img src="<?= film.image ?>" class="card-img-top" alt="<?= film.titre ?>">
       <div class="card-body">
         <h5 class="card-title"><?= film.titre ?></h5>
         <p class="card-text"> <?= film.description ?> </p>
