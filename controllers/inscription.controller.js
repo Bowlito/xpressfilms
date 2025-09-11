@@ -35,32 +35,32 @@ const addUser = async (req, res, next) => {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
 
-            const u = await inscriptionRepository.save({
-                id: req.body.id,
+            const user = await inscriptionRepository.save({
+                id: req.body.id_utilisateur,
                 nom: req.body.nom,
                 prenom: req.body.prenom,
                 email: req.body.email,
                 password: hashedPassword,
-                role: req.body.role
+                role: "user"
             });
 
-            if (u == null) {
+            if (user == null) {
                 res.render('inscription', {
                     erreurs: ["Problème d'insertion"],
                 })
             } else {
-                req.session.id = u.id;
-                req.session.prenom = u.prenom;
-                req.session.nom = u.nom;
-                req.session.role = u.role;
+                req.session.id_user = user.id_utilisateur;
+                req.session.prenom = user.prenom;
+                req.session.nom = user.nom;
+                req.session.role = user.role;
 
-
+                
                 res.redirect('/accueil')
 
             }
         })
         .catch(async err => {
-            console.log("JE ME SUIS FAIT CATCH");
+            console.log("JE ME SUIS FAIT CATCH", err);
 
             res.redirect('/inscription')
         })
