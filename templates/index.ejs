@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XPRESS VIDS</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XPRESS VIDS</title>
-  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
+  <body class="bg-black">
+    <?- include('header.ejs') ?>
 
-<body class="bg-black">
+    <h1 class="text-primary text-center mt-5">Bienvenue sur XPRESS VIDS</h1>
 
-
-  <?- include('header.ejs') ?>
-
-
-  <h1 class="text-primary text-center">Bienvenue sur XPRESS VIDS</h1>
-  
-  <h2 class="text-light text-center">Dernier film ajouté</h2>
-  <div class="d-flex flex-row justify-content-center p-2">
-    <div class="card p-2 m-2" style="width: 15rem">
-      <img src="<?= movies[0].image ?>" alt="<?= movies[0].titre ?>">
-      <div class="card-body">
-        <h5 class=""> <?= movies[0].titre ?> </h5>
-        <p class="card-text"> <?= movies[0].description ?> </p>
-
-        <p class="text-light"> <?= session.user?> </p>
+    <? if(session.user && session.user.role == 'admin') {?>
+    <div class="d-flex flex-column align-items-center mt-5">
+      <div>
+        <h2 class="text-light text-center mb-5">
+          Espace administrateur de
+          <?= session.user.prenom ?> <?= session.user.nom ?>
+        </h2>
+      </div>
+      <div>
+        <a href="/films" class="btn btn-primary p-2 m-2">Gestion des films</a>
+        <a href="/users" class="btn btn-warning p-2 m-2">Gestion des utilisateurs</a>
       </div>
     </div>
-  </div>
+    <? } else { ?>
 
-</body>
+    <h2 class="text-light text-center">Dernier film ajouté</h2>
+    <div class="d-flex flex-row justify-content-center p-2">
+      <div class="card p-2 m-2" style="width: 15rem">
+        <img src="<?= movies[0].image ?>" alt="<?= movies[0].titre ?>" />
+        <div class="card-body">
+          <h5 class=""><?= movies[0].titre ?></h5>
+          <p class="card-text"><?= movies[0].description ?></p>
 
+          <p class="text-light"><?= session.user?></p>
+        </div>
+      </div>
+    </div>
+    <? } ?>
+  </body>
 </html>
