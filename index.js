@@ -44,7 +44,7 @@ app.use("/films", films);
 app.use("/inscription", inscriptions);
 app.use("/connexion", connexions);
 app.use("/users", users);
-// app.use('/films', films)
+//app.use('/favoris', users)
 // app.use('/films', films)
 
 app.get("/logout", (req, res) => {
