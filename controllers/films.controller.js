@@ -1,6 +1,5 @@
 import filmRepository from "../repositories/films.repository.js";
 
-console.log(filmRepository.findAll);
 
 const show = async (req, res, next) => {
   const films = await filmRepository.findAll();

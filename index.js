@@ -6,7 +6,7 @@ import session from "express-session";
 import films from "./routes/film.route.js";
 import inscriptions from "./routes/inscription.route.js";
 import connexions from "./routes/connexion.route.js";
-// import favoris from "./routes/favoris.route.js"
+import favoris from "./routes/favoris.route.js"
 import path from "path";
 import lastFilm from "./repositories/films.repository.js";
 import users from "./routes/users.route.js";
@@ -44,8 +44,7 @@ app.use("/films", films);
 app.use("/inscription", inscriptions);
 app.use("/connexion", connexions);
 app.use("/users", users);
-//app.use('/favoris', users)
-// app.use('/films', films)
+app.use('/favoris', favoris)
 
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
