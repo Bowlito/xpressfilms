@@ -45,6 +45,7 @@ const showById = async (req, res, next) => {
       id: req.params.id,
     });
     res.render("updateFilm", {
+      id: film.id_film,
       titre: film.titre,
       image: film.image,
       description: film.description,
@@ -58,4 +59,18 @@ const showById = async (req, res, next) => {
   }
 };
 
-export default { show, add, remove, showById };
+const update = async (req, res, next) => {
+  console.log("REQ BODY ICI : ", req.body);
+  
+  try {
+    const film = await filmRepository.updateFilm(req.body)
+    console.log(film);
+    res.redirect("/films")
+    
+  } catch (error) {
+    console.log(error);
+    res.redirect("/films/update/" + req.body.id)
+  }
+}
+
+export default { show, add, remove, showById, update };

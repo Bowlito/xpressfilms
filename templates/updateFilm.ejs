@@ -26,7 +26,9 @@
     <form
       class="row g-3 needs-validation d-flex justify-content-center"
       method="post"
+      action="/films/update/:<?= id ?>"
     >
+      <input type="hidden" name="id_film" value="<?= id ?>">
       <div class="row gx-5 justify-content-center">
         <div class="col-md-4">
           <label for="titre" class="form-label">Titre</label>
