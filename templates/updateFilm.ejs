@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des utilisateurs</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-black text-light">
+    <?- include('header.ejs') ?>
+
+    <? if(!session.user || session.user.role !='admin'){ ?>
+    <h1 class="text-light">Vous n'êtes pas autorisé à accéder à cette page</h1>
+    <a class="btn btn-danger" href="/accueil">Retour à l'accueil</a>
+
+    <? } else { ?>
+    <h1 class="text-light text-center mt-5">
+      Modification du film
+      <?= titre ?>
+      
+    </h1>
+    <div class="d-flex justify-content-center">
+    <img src="/<?= image ?>" alt="<?= titre ?>" class="w-25">
+    </div>
+<div class="container text-center">
+    <form
+      class="row g-3 needs-validation d-flex justify-content-center"
+      method="post"
+    >
+      <div class="row gx-5 justify-content-center">
+        <div class="col-md-4">
+          <label for="titre" class="form-label">Titre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="titre"
+            name="titre"
+            value="<?= titre ?>"
+            required
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="image" class="form-label">Image</label>
+          <input
+            type="text"
+            class="form-control"
+            id="image"
+            name="image"
+            value="<?= image ?>"
+            required
+          />
+        </div>
+      </div>
+      <div class="row text-center justify-content-center p-2">
+        <div class="col-lg-9">
+          <label for="description" class="form-label">Description</label>
+          <div class="input-group has-validation">
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              aria-describedby="inputGroupPrepend"
+              style="height: 100px"
+            > <?= description ?></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label for="dateSortie" class="form-label">Date de sortie</label>
+        <input
+          type="date"
+          class="form-control"
+          id="dateSortie"
+          name="dateSortie"
+          value="<?= dateSortie ?>"
+          required
+        />
+        <div class="invalid-feedback">Merci de saisir une date de sortie</div>
+      </div>
+      <div class="col-md-2">
+        <label for="genre" class="form-label">Genre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="genre"
+          name="genre"
+          value="<?= genre ?>"
+          required
+        />
+      </div>
+
+      <div class="col-12 mt-5">
+        <button class="btn btn-primary mb-5" type="submit">Modifier le film</button>
+      </div>
+    </form>
+</div>
+    <? } ?>
+  </body>
+</html>

@@ -1,33 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Films</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Films</title>
-  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
+  <body class="bg-black text-light">
+    <?- include('header.ejs') ?>
+    <? if(session.user && session.user.role == 'admin') {?>
+    <h2 class="text-center mb-5 mt-5">Ajouter un film</h2>
+    <div class="container text-center">
+      <form
+        class="row g-3 needs-validation d-flex justify-content-center"
+        method="post"
+      >
+        <div class="row gx-5 justify-content-center">
+          <div class="col-md-4">
+            <label for="titre" class="form-label">Titre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="titre"
+              name="titre"
+              required
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="image" class="form-label">Image</label>
+            <input
+              type="text"
+              class="form-control"
+              id="image"
+              name="image"
+              required
+            />
+          </div>
+        </div>
+        <div class="row text-center justify-content-center p-2">
+          <div class="col-lg-9">
+            <label for="description" class="form-label">Description</label>
+            <div class="input-group has-validation">
+              <textarea
+                type="text"
+                class="form-control"
+                id="description"
+                name="description"
+                aria-describedby="inputGroupPrepend"
+                style="height: 100px"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="dateSortie" class="form-label">Date de sortie</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dateSortie"
+            name="dateSortie"
+            required
+          />
+          <div class="invalid-feedback">Merci de saisir une date de sortie</div>
+        </div>
+        <div class="col-md-2">
+          <label for="genre" class="form-label">Genre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="genre"
+            name="genre"
+            required
+          />
+        </div>
 
-<body class="bg-black text-light">
-  <?- include('header.ejs') ?>
-  <h1 class="text-center mb-5">Voici les films en stock</h1>
-  
-  <div class="d-flex flex-row justify-content-center p-2">
-    <? films.forEach(film => { ?>
-    <div class="card p-2 m-2" style="width: 15rem">
-      <img src="<?= film.image ?>" class="card-img-top" alt="<?= film.titre ?>">
-      <div class="card-body">
-        <h5 class="card-title"><?= film.titre ?></h5>
-        <p class="card-text"> <?= film.description ?> </p>
-        <a href="#" class="btn btn-primary mb-2">Ajouter aux favoris</a>
-        <? if(session.user && session.user.role == 'admin') {?>
-          <a href="#" class="btn btn-primary">Modifier</a>
-        <?}?>
-      </div>
+        <div class="col-12 mt-5">
+          <button class="btn btn-primary" type="submit">Ajouter film</button>
+        </div>
+      </form>
     </div>
-    <? }); ?>
-  </div>
 
-</body>
+    <? } ?>
 
+    <h1 class="text-center mb-5 mt-5">Voici les films en stock</h1>
+
+    <div class="d-flex flex-row justify-content-center p-2">
+      <? films.forEach(film =>
+      { ?>
+      <div class="card p-2 m-2" style="width: 15rem">
+        <img
+          src="<?= film.image ?>"
+          class="card-img-top"
+          alt="<?= film.titre ?>"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title"><?= film.titre ?></h5>
+          <p class="card-text"><?= film.description ?></p>
+          <a href="" class="btn btn-primary mb-2">Ajouter aux favoris</a>
+          <? if(session.user && session.user.role == 'admin') {?>
+          <a href="/films/update/<?= film.id_film ?>" class="btn btn-warning p-2 text-light">Modifier</a>
+          <a href="/films/remove/<?= film.id_film ?>" class="btn btn-danger p-2"
+            >Supprimer</a
+          >
+          <?}?>
+        </div>
+      </div>
+      <? }); ?>
+    </div>
+  </body>
 </html>

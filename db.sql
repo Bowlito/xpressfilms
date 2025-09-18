@@ -10,7 +10,8 @@ CREATE TABLE films (
     image VARCHAR(200),
     description VARCHAR(200),
     dateSortie DATE,
-    genre VARCHAR(30)
+    genre VARCHAR(30),
+    dateAjout TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 
 CREATE TABLE utilisateurs (
@@ -36,7 +37,8 @@ INSERT INTO films VALUES (
     "images/spiderverse1.jpg",
     "A man with spider abilities in multiple univers",
     "2018-09-24",
-    "action"
+    "action",
+    DEFAULT
 )
 
 INSERT INTO films VALUES (
@@ -45,7 +47,8 @@ INSERT INTO films VALUES (
     "images/inception1.jpg",
     "What if you could interact with others dreams in order to influence them?",
     "2019-08-24",
-    "science-fiction"
+    "science-fiction",
+    DEFAULT
 )
 
 INSERT INTO films VALUES (
@@ -54,7 +57,8 @@ INSERT INTO films VALUES (
     "images/destinsdnd.png",
     "Leur destinée fragile ne tient qu/’à un fil… ou peut-être à deux lacets.",
     "2025-06-15",
-    "Fantaisie"
+    "Fantaisie",
+    DEFAULT
 )
 
 INSERT INTO utilisateurs VALUES (
