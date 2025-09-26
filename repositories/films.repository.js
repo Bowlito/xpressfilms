@@ -27,8 +27,8 @@ console.log(findAll());
 const findById = async (film) => {
   const SELECT = "SELECT * FROM films WHERE id_film=?";
   try {
-    const resultat = await connection.query(SELECT, [film.id]);
-    console.log(resultat[0]);
+    const resultat = await connection.query(SELECT, [film]);
+    console.log(film);
 
     return resultat[0][0];
   } catch (error) {
